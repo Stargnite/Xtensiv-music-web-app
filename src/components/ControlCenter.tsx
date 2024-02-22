@@ -26,7 +26,7 @@ const ControlCenter = () => {
   const isPlaying = useSelector((state) => state.music.isPlaying);
 
   useEffect(() => {
-    console.log(audioRef);
+    // console.log(audioRef);
     const audioElement = audioRef.current;
 
     const updateTime = () => {
