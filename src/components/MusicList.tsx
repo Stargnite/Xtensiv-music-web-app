@@ -2,8 +2,19 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { musicList } from "../assets/music-list";
 import MusicCard from "./MusicCard";
+import APIKit from "./../api/spotify"
+import { useEffect, useState } from "react";
 
 const MusicList = () => {
+  const [playlist, setPlaylist] = useState(null)
+
+
+  useEffect(() => {
+    APIKit.get("me/playlists").then(function(response) {
+      console.log(response.data)
+    })
+  }, [])
+
   return (
     <div className="mb-10">
       <div className="flex items-center justify-between mb-5">

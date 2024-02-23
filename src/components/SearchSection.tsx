@@ -10,10 +10,14 @@ export default function SearchSection() {
   const [image, setImage] = useState(Img);
   useEffect(() => {
     apiClient.get("me").then((response) => {
-      const data = response.data
-      console.log(data)
+      const data = response.data;
+      // console.log(data);
       setUsername(data.display_name);
-      setImage(data.images[0].url);
+      if (data.images[0].url) {
+        setImage(data.images[0].url);
+      } else {
+        setImage(Img);
+      }
     });
   }, []);
 
