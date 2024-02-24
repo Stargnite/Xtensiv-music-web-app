@@ -13,11 +13,11 @@ export default function SearchSection() {
       const data = response.data;
       // console.log(data);
       setUsername(data.display_name);
-      if (data.images[0].url) {
-        setImage(data.images[0].url);
-      } else {
-        setImage(Img);
-      }
+      // if (data.images[0].url) {
+      //   setImage(data.images[0].url);
+      // } else {
+      //   setImage(Img);
+      // }
     });
   }, []);
 

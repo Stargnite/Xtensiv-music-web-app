@@ -6,22 +6,24 @@ import FullDisplay from "./components/FullDisplay";
 import Login from "./components/auth/Login";
 import { useEffect, useState } from "react";
 import { setClientToken } from "./api/spotify";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Playlists from "./components/Playlists";
 
 function App() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    const token: string | null  = window.localStorage.getItem("token");
-    const hash:string = window.location.hash;
+    const token: string | null = window.localStorage.getItem("token");
+    const hash: string = window.location.hash;
     window.location.hash = "";
     if (!token && hash) {
-      const _token:string = hash.split("&")[0].split("=")[1];
+      const _token: string = hash.split("&")[0].split("=")[1];
 
       window.localStorage.setItem("token", _token);
       setToken(_token);
     } else {
       setToken(token || "");
-      setClientToken(token)
+      setClientToken(token || "");
     }
   }, []);
 
@@ -37,7 +39,14 @@ function App() {
           <img src={Logo} alt="" className="mt-2 mb-4" />
           <NavBar />
         </aside>
-        <FullDisplay />
+        {/* <FullDisplay /> */}
+        <Router>
+          <Routes>
+            <Route path="/" element={<FullDisplay />}></Route>
+            <Route path="/playlists" element={<Playlists />}></Route>
+            <Route element={<FullDisplay />}></Route>
+          </Routes>
+        </Router>
       </div>
       <ControlCenter />
     </div>
