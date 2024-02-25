@@ -30,7 +30,7 @@ function App() {
   return !token ? (
     <Login />
   ) : (
-    <div className="bg-red">
+    <div className="bg-red bg-gradient-to-t from-black to-slate-800">
       <div className="flex">
         <aside
           className="w-56 min-h-[85vh] max-h-[87vh] pl-5 bg-black overflow-y-scroll"

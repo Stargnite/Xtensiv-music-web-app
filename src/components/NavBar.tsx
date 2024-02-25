@@ -7,8 +7,19 @@ import { BsClockHistory } from "react-icons/bs";
 import { MdOutlineAddBox } from "react-icons/md";
 import { PiPlaylistLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import APIKit from "./../api/spotify";
 
 const NavBar = () => {
+  const [playlists, setPlaylists] = useState([]);
+
+  useEffect(() => {
+    APIKit.get("me/playlists").then(function (response) {
+      setPlaylists(response.data.items);
+      console.log(response.data.items);
+    });
+  }, []);
+
   return (
     <nav className="">
       <div className="nav-section mb-5">
@@ -50,28 +61,22 @@ const NavBar = () => {
       </div>
 
       <div className="nav-section mb-5">
-        <p className="text-gray-500 text-sm">Playlist</p>
+        <p className="text-gray-500 text-sm">Your Playlists</p>
         <div className="flex flex-col">
           <div className="flex items-center text-lg py-1">
             <MdOutlineAddBox size={20} className="mr-2" />
             <p>Create Playlist</p>
           </div>
-          <div className="flex items-center text-lg py-1">
-            <PiPlaylistLight size={20} className="mr-2" />
-            <p>My Playlist #1</p>
-          </div>
-          <div className="flex items-center text-lg py-1">
-            <PiPlaylistLight size={20} className="mr-2" />
-            <p>My Playlist #2</p>
-          </div>
-          <div className="flex items-center text-lg py-1">
-            <PiPlaylistLight size={20} className="mr-2" />
-            <p>My Playlist #2</p>
-          </div>
-          <div className="flex items-center text-lg py-1">
-            <PiPlaylistLight size={20} className="mr-2" />
-            <p>My Playlist #2</p>
-          </div>
+          {playlists &&
+            playlists.map((playlist) => (
+              <div
+                key={playlist.id}
+                className="flex items-center text-lg py-1 hover:bg-slate-800 transition-all cursor-pointer"
+              >
+                <PiPlaylistLight size={20} className="mr-2" />
+                <p className="text-nowrap overflow-hidden">{playlist.name}</p>
+              </div>
+            ))}
         </div>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 // import { musicList } from "../assets/music-list";
-import PlaylistCard from "./PlaylistCard";
+import PlaylistCard from "./PlaylistCard/PlaylistCard";
 import APIKit from "../api/spotify";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
