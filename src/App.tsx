@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { setClientToken } from "./api/spotify";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Playlists from "./components/Playlists";
+import SelectedPlaylist from "./components/SelectedPlaylist/SelectedPlaylist";
 
 function App() {
   const [token, setToken] = useState("");
@@ -30,21 +31,26 @@ function App() {
   return !token ? (
     <Login />
   ) : (
-    <div className="bg-red bg-gradient-to-t from-black to-slate-800">
+    <div className="bg-red ">
+      {/* bg-gradient-to-t from-black to-slate-800 */}
       <div className="flex">
-        <aside
-          className="w-56 min-h-[85vh] max-h-[87vh] pl-5 bg-black overflow-y-scroll"
-          style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
-        >
-          <img src={Logo} alt="" className="mt-2 mb-4" />
-          <NavBar />
-        </aside>
-        {/* <FullDisplay /> */}
         <Router>
+          <aside
+            className="w-56 min-h-[85vh] max-h-[87vh] pl-5 bg-black overflow-y-scroll"
+            style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
+          >
+            <img src={Logo} alt="" className="mt-2 mb-4" />
+            <NavBar />
+          </aside>
+
           <Routes>
             <Route path="/" element={<FullDisplay />}></Route>
             <Route path="/playlists" element={<Playlists />}></Route>
-            <Route element={<FullDisplay />}></Route>
+            <Route path="/explore" element={<FullDisplay />}></Route>
+            <Route
+              path="/playlists/:selectedPlaylistId/tracks"
+              element={<SelectedPlaylist />}
+            ></Route>
           </Routes>
         </Router>
       </div>

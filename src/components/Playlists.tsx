@@ -48,7 +48,9 @@ const MusicList = () => {
           >
             {playlists.map((playlist: object) => (
               <li key={playlist.id} className="mx-3">
+                <Link to={`/playlists/${playlist.id}/tracks`}>
                 <PlaylistCard playlist={playlist} />
+                </Link>
               </li>
             ))}
           </ul>

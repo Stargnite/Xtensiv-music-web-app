@@ -6,7 +6,7 @@ import { IoAlbumsOutline } from "react-icons/io5";
 import { BsClockHistory } from "react-icons/bs";
 import { MdOutlineAddBox } from "react-icons/md";
 import { PiPlaylistLight } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import APIKit from "./../api/spotify";
 
@@ -16,7 +16,7 @@ const NavBar = () => {
   useEffect(() => {
     APIKit.get("me/playlists").then(function (response) {
       setPlaylists(response.data.items);
-      console.log(response.data.items);
+      // console.log(response.data.items);
     });
   }, []);
 
@@ -25,12 +25,13 @@ const NavBar = () => {
       <div className="nav-section mb-5">
         <p className="text-gray-500 text-sm">MENU</p>
         <div className="flex flex-col">
-          {/* <Link to="/"> */}
-          <button className="flex items-center text-lg py-1 border-r-2 hover:bg-slate-800 transition-all">
+          <NavLink
+            to="/"
+            className="flex w-full  items-center border-r-2  text-lg py-1 hover:bg-slate-800 transition-all"
+          >
             <HiHome size={20} className="mr-2" />
             <p>Explore</p>
-          </button>
-          {/* </Link> */}
+          </NavLink>
           <button className="flex items-center text-lg py-1 hover:bg-slate-800 transition-all">
             <CgMusicSpeaker size={20} className="mr-2" />
             <p>Genre</p>
