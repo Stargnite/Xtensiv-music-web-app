@@ -12,7 +12,7 @@ const MusicList = () => {
   useEffect(() => {
     APIKit.get("me/playlists").then(function (response) {
       setPlaylists(response.data.items);
-      console.log(response.data.items);
+      // console.log(response.data.items);
     });
   }, []);
 

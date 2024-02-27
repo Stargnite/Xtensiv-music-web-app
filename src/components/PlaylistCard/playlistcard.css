@@ -1,7 +1,8 @@
 .playlist-card {
   position: relative;
-  width: auto;
+  /* width: auto; */
   height: auto;
+  max-width: 12rem;
   border-radius: 20px;
   margin-bottom: 2%;
   background: linear-gradient(
@@ -32,6 +33,13 @@
   font-size: 16px;
   color: #c4d0e3;
   width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  padding-right: .5rem;
+  /* text-overflow: ellipsis; */
+  /* line-clamp: 2; */
 }
 
 .playlist-subtitle {
