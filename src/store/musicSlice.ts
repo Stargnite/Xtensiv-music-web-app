@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MusicState {
   isPlaying: boolean;
-  currentMusicIndex: number | null;
-  playlist: string[];
+  currentTrack: object;
+  playlist: object[];
 }
 
 const initialState: MusicState = {
   isPlaying: false,
-  currentMusicIndex: null,
+  currentTrack: {},
   playlist: [],
 };
 
@@ -29,9 +29,25 @@ export const musicSlice = createSlice({
         state.isPlaying = !state.isPlaying;
       }
     },
+    fillPlaylist: (state, action) => {
+      const tracks = action.payload
+      // console.log(tracks)
+      return {
+        ...state,
+        playlist: [...tracks]
+      }
+    },
+    updateCurrentTrack: (state, action) => {
+      const currentTrack = action.payload
+      // console.log(currentTrack)
+      return {
+        ...state,
+        currentTrack: currentTrack
+      }
+    }
   },
 });
 
-export const { togglePlay } = musicSlice.actions;
+export const { togglePlay, fillPlaylist, updateCurrentTrack } = musicSlice.actions;
 
 export default musicSlice.reducer;
