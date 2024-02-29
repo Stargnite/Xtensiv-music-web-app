@@ -12,7 +12,7 @@ const SelectedPlaylist = () => {
 
   const dispatch = useDispatch();
   const listedTracks = useSelector((state) => state.music.playlist);
-  const currentTrack = useSelector((state) => state.music.currentTrack);
+  // const currentTrack = useSelector((state) => state.music.currentTrack);
 
   useEffect(() => {
     apiClient
@@ -21,13 +21,18 @@ const SelectedPlaylist = () => {
         const tracks = response.data.items;
         dispatch(fillPlaylist(tracks));
         dispatch(updateCurrentTrack(tracks[currentIndex].track));
-        console.log(response.data.items);
+        // console.log(response.data.items);
         // setCurrentIndex()
         // setListedTracks(tracks);
         // setCurrentTrack(tracks[0].track);
       });
     // console.log(currentTrack);
   }, [selectedPlaylistId, dispatch, currentIndex]);
+
+  const updateCurrentIndex = (index: number) => {
+    setCurrentIndex(index)
+    console.log(index)
+  }
 
   return (
     <div
@@ -37,10 +42,11 @@ const SelectedPlaylist = () => {
       <h1 className="px-5 text-[3rem] font-bold mb-5">Tracks</h1>
 
       <ul>
-        {listedTracks.map((item) => (
+        {listedTracks.map((item, index) => (
           <li
             key={item.track.id}
             className="flex items-center py-3 px-5 border border-t-0 border-l-0 border-r-0 border-gray-800 hover:cursor-pointer hover:bg-slate-900 transition-all ease-out duration-300"
+            onClick={() => updateCurrentIndex(index)}
           >
             <img
               src={item.track.album.images[2].url}

@@ -4,12 +4,14 @@ interface MusicState {
   isPlaying: boolean;
   currentTrack: object;
   playlist: object[];
+  currentTrackIndex: number;
 }
 
 const initialState: MusicState = {
   isPlaying: false,
   currentTrack: {},
   playlist: [],
+  currentTrackIndex: 0
 };
 
 export const musicSlice = createSlice({
@@ -39,7 +41,7 @@ export const musicSlice = createSlice({
     },
     updateCurrentTrack: (state, action) => {
       const currentTrack = action.payload
-      // console.log(currentTrack)
+      console.log(currentTrack)
       return {
         ...state,
         currentTrack: currentTrack

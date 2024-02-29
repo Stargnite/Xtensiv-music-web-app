@@ -24,6 +24,7 @@ const ControlCenter = () => {
 
   const dispatch = useDispatch();
   const isPlaying = useSelector((state) => state.music.isPlaying);
+  const currentTrack = useSelector((state) => state.music.currentTrack);
 
   useEffect(() => {
     // console.log(audioRef);
@@ -89,12 +90,13 @@ const ControlCenter = () => {
         <div className="flex items-center">
           <img
             src={ImageHolder}
+            // currentTrack ? currentTrack.album.images[2].url : 
             alt=""
             className="w-14 h-14 mr-5 border-white border-[0.1rem] rounded"
           />
           <div className="mr-5">
-            <h1 className="font-semibold text-xl">The Final Frontier</h1>
-            <p>Bones</p>
+            <h1 className="font-semibold text-xl">{currentTrack.name}</h1>
+            {/* <p>{currentTrack.artists[0].name}</p> */}
           </div>
           <div className="flex">
             <CiHeart size={25} className="mr-2 hover:cursor-pointer" />
