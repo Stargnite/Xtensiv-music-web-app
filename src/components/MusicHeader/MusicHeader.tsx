@@ -1,9 +1,11 @@
 import { FaPlay } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import img from "./../assets/angel-2.jpg";
-
+import img from "../../assets/angel-2.jpg";
+import "./musicHeader.css";
 import { useSelector, useDispatch } from "react-redux";
+import { IoMdPhonePortrait } from "react-icons/io";
+import Marquee from "../UI/Marquee";
 
 const MusicHeader = () => {
   const isPlaying = useSelector((state) => state.music.isPlaying);
@@ -11,20 +13,28 @@ const MusicHeader = () => {
 
   const currentTrack = useSelector((state) => state.music.currentTrack);
 
-  const imageUrl = currentTrack && currentTrack.album && currentTrack.album.images && currentTrack.album.images.length > 2
-  ? currentTrack.album.images[0].url
-  : img;
+  const imageUrl =
+    currentTrack &&
+    currentTrack.album &&
+    currentTrack.album.images &&
+    currentTrack.album.images.length > 2
+      ? currentTrack.album.images[0].url
+      : img;
 
-  const artistName = currentTrack && currentTrack.artists && currentTrack.artists.length > 0 ? currentTrack.artists[0].name : "name";
-
+  const artistName =
+    currentTrack && currentTrack.artists && currentTrack.artists.length > 0
+      ? currentTrack.artists[0].name
+      : "name";
 
   return (
     <div className="flex justify-between items-center border-b-2 pb-10 ">
       <div className="">
         <div className="mb-10">
-          <h1 className="font-bold text-4xl mb-1">
-            {currentTrack.name ? currentTrack.name : "Current music"}
-          </h1>
+          <Marquee>
+            <h1 className="font-bold text-4xl mb-1">
+              {currentTrack.name ? currentTrack.name : "Current music"}
+            </h1>
+          </Marquee>
           <h4 className="text-2xl">{artistName}</h4>
         </div>
 
@@ -47,8 +57,18 @@ const MusicHeader = () => {
           <MdOutlineKeyboardArrowRight />
         </div>
       </div>
-
-      <img src={imageUrl} alt="music poster" className="w-2/4 h-90 max-w-80 max-h-80 rounded-xl mr-40" />
+      <div className="flex items-center justify-center relative poster">
+        <img
+          src={imageUrl}
+          alt="music poster"
+          className="w-[70%]  max-w-2/4 max-h-80 rounded-xl mr-30"
+        />
+        <img
+          src={imageUrl}
+          alt="music poster"
+          className="w-[70%] max-w-2/4 max-h-80 rounded-xl poster-shadow"
+        />
+      </div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { useState, useRef, useEffect } from "react";
 import music from "./../assets/Asake_-_Dull.mp3";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePlay } from "../store/musicSlice";
+import Marquee from "./UI/Marquee";
 
 const ControlCenter = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -26,12 +27,18 @@ const ControlCenter = () => {
   const isPlaying = useSelector((state) => state.music.isPlaying);
   const currentTrack = useSelector((state) => state.music.currentTrack);
 
+  const imageUrl =
+    currentTrack &&
+    currentTrack.album &&
+    currentTrack.album.images &&
+    currentTrack.album.images.length > 2
+      ? currentTrack.album.images[2].url
+      : ImageHolder;
 
-  const imageUrl = currentTrack && currentTrack.album && currentTrack.album.images && currentTrack.album.images.length > 2
-  ? currentTrack.album.images[2].url
-  : ImageHolder;
-
-  const artistName = currentTrack && currentTrack.artists && currentTrack.artists.length > 0 ? currentTrack.artists[0].name : "name";
+  const artistName =
+    currentTrack && currentTrack.artists && currentTrack.artists.length > 0
+      ? currentTrack.artists[0].name
+      : "name";
 
   useEffect(() => {
     // console.log(currentTrackIndex);
@@ -101,7 +108,13 @@ const ControlCenter = () => {
             className="w-14 h-14 mr-5 border-white border-[0.1rem] rounded"
           />
           <div className="mr-5">
-            <h1 className="font-semibold text-xl">{currentTrack.name}</h1>
+            <Marquee>
+              <h1 className="font-semibold text-xl">
+                {currentTrack && currentTrack.name
+                  ? currentTrack.name
+                  : "Select a music for its name to display here"}
+              </h1>
+            </Marquee>
             <p>{artistName}</p>
           </div>
           <div className="flex">

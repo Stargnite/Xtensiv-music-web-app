@@ -1,5 +1,5 @@
 import SearchSection from "./SearchSection";
-import MusicHeader from "./MusicHeader";
+import MusicHeader from "./MusicHeader/MusicHeader";
 import Playlists from "./Playlists";
 // import img from "./../assets/angel-2.jpg"
 

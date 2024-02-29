@@ -1,0 +1,13 @@
+.poster {
+	z-index: 1;
+}
+
+
+.poster-shadow {
+	width: 50%;
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+backdrop-filter: blur( 50px );
+filter: blur( 10px );
+}
