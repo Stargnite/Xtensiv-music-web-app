@@ -11,7 +11,7 @@ const initialState: MusicState = {
   isPlaying: false,
   currentTrack: {},
   playlist: [],
-  currentTrackIndex: 0
+  currentTrackIndex: 0,
 };
 
 export const musicSlice = createSlice({
@@ -32,24 +32,36 @@ export const musicSlice = createSlice({
       }
     },
     fillPlaylist: (state, action) => {
-      const tracks = action.payload
+      const tracks = action.payload;
       // console.log(tracks)
       return {
         ...state,
-        playlist: [...tracks]
-      }
+        playlist: [...tracks],
+      };
     },
     updateCurrentTrack: (state, action) => {
-      const currentTrack = action.payload
+      const currentTrack = action.payload;
       console.log(currentTrack)
       return {
         ...state,
-        currentTrack: currentTrack
-      }
-    }
+        currentTrack: currentTrack,
+      };
+    },
+    getCurrentTrackIndex: (state, action) => {
+      const currentTrackIndex = action.payload;
+      return {
+        ...state,
+        currentTrackIndex: currentTrackIndex,
+      };
+    },
   },
 });
 
-export const { togglePlay, fillPlaylist, updateCurrentTrack } = musicSlice.actions;
+export const {
+  togglePlay,
+  fillPlaylist,
+  updateCurrentTrack,
+  getCurrentTrackIndex,
+} = musicSlice.actions;
 
 export default musicSlice.reducer;

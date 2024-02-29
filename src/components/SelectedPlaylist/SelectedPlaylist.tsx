@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import apiClient from "../../api/spotify";
 import { useSelector, useDispatch } from "react-redux";
-import { fillPlaylist, updateCurrentTrack } from "../../store/musicSlice";
+import { fillPlaylist, updateCurrentTrack, getCurrentTrackIndex } from "../../store/musicSlice";
 
 const SelectedPlaylist = () => {
   const { selectedPlaylistId } = useParams();
@@ -12,7 +12,6 @@ const SelectedPlaylist = () => {
 
   const dispatch = useDispatch();
   const listedTracks = useSelector((state) => state.music.playlist);
-  // const currentTrack = useSelector((state) => state.music.currentTrack);
 
   useEffect(() => {
     apiClient
@@ -21,6 +20,7 @@ const SelectedPlaylist = () => {
         const tracks = response.data.items;
         dispatch(fillPlaylist(tracks));
         dispatch(updateCurrentTrack(tracks[currentIndex].track));
+        dispatch(getCurrentTrackIndex(currentIndex));
         // console.log(response.data.items);
         // setCurrentIndex()
         // setListedTracks(tracks);

@@ -18,29 +18,16 @@ const MusicList = () => {
 
   return (
     <div
-      className=" px-10 pt-2 w-full max-h-[87vh] flex overflow-y-scroll flex-wrap"
+      className="px-10 w-full max-h-[87vh] flex overflow-y-scroll flex-wrap"
       style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
     >
       {playlists ? (
         <div className="">
-          <div className="flex items-center w-full justify-between mb-5">
             <Link to="/playlists">
-              <div className="flex items-center">
-                <h1 className="mr-5 text-xl font-semibold">
+                <h1 className="mx-3 text-3xl font-semibold">
                   Your available playlists{" "}
                 </h1>
-                <MdOutlineKeyboardArrowRight />
-              </div>
             </Link>
-            <div className="flex items-center">
-              <button className="mr-5">
-                <MdKeyboardArrowLeft size={30} />
-              </button>
-              <button>
-                <MdOutlineKeyboardArrowRight size={30} />
-              </button>
-            </div>
-          </div>
 
           <ul
             className="flex flex-wrap"

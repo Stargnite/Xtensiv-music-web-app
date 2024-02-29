@@ -26,8 +26,15 @@ const ControlCenter = () => {
   const isPlaying = useSelector((state) => state.music.isPlaying);
   const currentTrack = useSelector((state) => state.music.currentTrack);
 
+
+  const imageUrl = currentTrack && currentTrack.album && currentTrack.album.images && currentTrack.album.images.length > 2
+  ? currentTrack.album.images[2].url
+  : ImageHolder;
+
+  const artistName = currentTrack && currentTrack.artists && currentTrack.artists.length > 0 ? currentTrack.artists[0].name : "name";
+
   useEffect(() => {
-    // console.log(audioRef);
+    // console.log(currentTrackIndex);
     const audioElement = audioRef.current;
 
     const updateTime = () => {
@@ -89,14 +96,13 @@ const ControlCenter = () => {
       <div className="py-2 px-5 flex justify-between">
         <div className="flex items-center">
           <img
-            src={ImageHolder}
-            // currentTrack ? currentTrack.album.images[2].url : 
+            src={imageUrl}
             alt=""
             className="w-14 h-14 mr-5 border-white border-[0.1rem] rounded"
           />
           <div className="mr-5">
             <h1 className="font-semibold text-xl">{currentTrack.name}</h1>
-            {/* <p>{currentTrack.artists[0].name}</p> */}
+            <p>{artistName}</p>
           </div>
           <div className="flex">
             <CiHeart size={25} className="mr-2 hover:cursor-pointer" />

@@ -11,6 +11,13 @@ const MusicHeader = () => {
 
   const currentTrack = useSelector((state) => state.music.currentTrack);
 
+  const imageUrl = currentTrack && currentTrack.album && currentTrack.album.images && currentTrack.album.images.length > 2
+  ? currentTrack.album.images[0].url
+  : img;
+
+  const artistName = currentTrack && currentTrack.artists && currentTrack.artists.length > 0 ? currentTrack.artists[0].name : "name";
+
+
   return (
     <div className="flex justify-between items-center border-b-2 pb-10 ">
       <div className="">
@@ -18,7 +25,7 @@ const MusicHeader = () => {
           <h1 className="font-bold text-4xl mb-1">
             {currentTrack.name ? currentTrack.name : "Current music"}
           </h1>
-          <h4 className="text-2xl">Artist's name</h4>
+          <h4 className="text-2xl">{artistName}</h4>
         </div>
 
         <div className="flex">
@@ -41,7 +48,7 @@ const MusicHeader = () => {
         </div>
       </div>
 
-      <img src={img} alt="music poster" className="w-2/4 h-90" />
+      <img src={imageUrl} alt="music poster" className="w-2/4 h-90 max-w-80 max-h-80 rounded-xl mr-40" />
     </div>
   );
 };

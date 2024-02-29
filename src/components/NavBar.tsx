@@ -1,5 +1,4 @@
 import { HiHome } from "react-icons/hi";
-import { CgMusicSpeaker } from "react-icons/cg";
 import { PiMicrophone } from "react-icons/pi";
 import { CiHeart } from "react-icons/ci";
 import { IoAlbumsOutline } from "react-icons/io5";
@@ -27,15 +26,18 @@ const NavBar = () => {
         <div className="flex flex-col">
           <NavLink
             to="/"
-            className="flex w-full  items-center border-r-2  text-lg py-1 hover:bg-slate-800 transition-all"
+            className="flex w-full items-center border-r-2  text-lg py-1 hover:bg-slate-800 transition-all"
           >
             <HiHome size={20} className="mr-2" />
             <p>Explore</p>
           </NavLink>
-          <button className="flex items-center text-lg py-1 hover:bg-slate-800 transition-all">
-            <CgMusicSpeaker size={20} className="mr-2" />
-            <p>Genre</p>
-          </button>
+          <NavLink
+            to="/playlists"
+            className="flex w-full items-center  text-lg py-1 hover:bg-slate-800 transition-all"
+          >
+            <PiPlaylistLight size={20} className="mr-2" />
+            <p>Playlists</p>
+          </NavLink>
           <button className="flex items-center text-lg py-1 hover:bg-slate-800 transition-all">
             <PiMicrophone size={20} className="mr-2" />
             <p>Podcast</p>
