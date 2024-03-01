@@ -13,7 +13,7 @@ import { FaCirclePause } from "react-icons/fa6";
 import { useState, useRef, useEffect } from "react";
 import music from "./../assets/Asake_-_Dull.mp3";
 import { useSelector, useDispatch } from "react-redux";
-import { togglePlay } from "../store/musicSlice";
+import { handlePrevTrack, handleNextTrack, togglePlay } from "../store/musicSlice";
 import Marquee from "./UI/Marquee";
 
 const ControlCenter = () => {
@@ -81,6 +81,14 @@ const ControlCenter = () => {
     dispatch(togglePlay(audioElement));
   };
 
+  const nextTrack = () => {
+    dispatch(handleNextTrack())
+  }
+
+  const prevTrack = () => {
+    dispatch(handlePrevTrack());
+  }
+
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
@@ -107,7 +115,7 @@ const ControlCenter = () => {
             alt=""
             className="w-14 h-14 mr-5 border-white border-[0.1rem] rounded"
           />
-          <div className="mr-5">
+          <div className="mr-5 overflow-hidden">
             <Marquee>
               <h1 className="font-semibold text-xl">
                 {currentTrack && currentTrack.name
@@ -125,7 +133,7 @@ const ControlCenter = () => {
 
         <div className="flex items-center justify-between w-1/5">
           <PiRepeatLight size={25} className="hover:cursor-pointer" />
-          <FaBackwardStep size={25} className="hover:cursor-pointer" />
+          <FaBackwardStep size={25} className="hover:cursor-pointer" onClick={prevTrack}  />
           {isPlaying ? (
             <FaCirclePause
               size={40}
@@ -139,7 +147,7 @@ const ControlCenter = () => {
               onClick={handleTogglePlay}
             />
           )}
-          <FaStepForward size={25} className="hover:cursor-pointer" />
+          <FaStepForward size={25} className="hover:cursor-pointer" onClick={nextTrack} />
           <IoShuffle size={25} className="hover:cursor-pointer" />
         </div>
 

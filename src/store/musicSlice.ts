@@ -5,6 +5,8 @@ interface MusicState {
   currentTrack: object;
   playlist: object[];
   currentTrackIndex: number;
+  prevTrack: number;
+  nextTrack: number;
 }
 
 const initialState: MusicState = {
@@ -12,6 +14,8 @@ const initialState: MusicState = {
   currentTrack: {},
   playlist: [],
   currentTrackIndex: 0,
+  prevTrack: 0,
+  nextTrack: 0,
 };
 
 export const musicSlice = createSlice({
@@ -41,7 +45,7 @@ export const musicSlice = createSlice({
     },
     updateCurrentTrack: (state, action) => {
       const currentTrack = action.payload;
-      console.log(currentTrack)
+      console.log(currentTrack);
       return {
         ...state,
         currentTrack: currentTrack,
@@ -54,6 +58,25 @@ export const musicSlice = createSlice({
         currentTrackIndex: currentTrackIndex,
       };
     },
+    handleNextTrack: (state) => {
+      console.log(state.currentTrackIndex)
+
+      return {
+        ...state,
+        currentTrackIndex:
+          state.currentTrackIndex === state.playlist.length
+            ? state.currentTrackIndex
+            : state.currentTrackIndex++,
+      };
+    },
+    handlePrevTrack: (state) => {
+      console.log(state.currentTrackIndex)
+      return {
+        ...state,
+        currentTrackIndex:
+          state.currentTrackIndex === 0 ? 0 : state.currentTrackIndex--,
+      };
+    },
   },
 });
 
@@ -62,6 +85,8 @@ export const {
   fillPlaylist,
   updateCurrentTrack,
   getCurrentTrackIndex,
+  handleNextTrack,
+  handlePrevTrack,
 } = musicSlice.actions;
 
 export default musicSlice.reducer;

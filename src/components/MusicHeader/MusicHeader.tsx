@@ -29,7 +29,7 @@ const MusicHeader = () => {
   return (
     <div className="flex justify-between items-center border-b-2 pb-10 ">
       <div className="">
-        <div className="mb-10">
+        <div className="mb-10 overflow-hidden">
           <Marquee>
             <h1 className="font-bold text-4xl mb-1">
               {currentTrack.name ? currentTrack.name : "Current music"}

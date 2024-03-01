@@ -23,11 +23,12 @@ const MusicList = () => {
     >
       {playlists ? (
         <div className="">
-            <Link to="/playlists">
-                <h1 className="mx-3 text-3xl font-semibold">
-                  Your available playlists{" "}
-                </h1>
-            </Link>
+          <Link to="/playlists" className="flex items-end">
+            <h1 className="mx-3 text-3xl font-semibold">
+              Your available playlists{" "}
+            </h1>
+            <MdOutlineKeyboardArrowRight size={30} />
+          </Link>
 
           <ul
             className="flex flex-wrap"
@@ -36,7 +37,7 @@ const MusicList = () => {
             {playlists.map((playlist: object) => (
               <li key={playlist.id} className="mx-3">
                 <Link to={`/playlists/${playlist.id}/tracks`}>
-                <PlaylistCard playlist={playlist} />
+                  <PlaylistCard playlist={playlist} />
                 </Link>
               </li>
             ))}

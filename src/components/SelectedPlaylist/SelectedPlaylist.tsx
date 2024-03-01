@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import apiClient from "../../api/spotify";
 import { useSelector, useDispatch } from "react-redux";
-import { fillPlaylist, updateCurrentTrack, getCurrentTrackIndex } from "../../store/musicSlice";
+import {
+  fillPlaylist,
+  updateCurrentTrack,
+  getCurrentTrackIndex,
+} from "../../store/musicSlice";
 
 const SelectedPlaylist = () => {
   const { selectedPlaylistId } = useParams();
@@ -30,9 +34,9 @@ const SelectedPlaylist = () => {
   }, [selectedPlaylistId, dispatch, currentIndex]);
 
   const updateCurrentIndex = (index: number) => {
-    setCurrentIndex(index)
-    console.log(index)
-  }
+    setCurrentIndex(index);
+    console.log(index);
+  };
 
   return (
     <div
@@ -45,18 +49,21 @@ const SelectedPlaylist = () => {
         {listedTracks.map((item, index) => (
           <li
             key={item.track.id}
-            className="flex items-center py-3 px-5 border border-t-0 border-l-0 border-r-0 border-gray-800 hover:cursor-pointer hover:bg-slate-900 transition-all ease-out duration-300"
+            className="flex items-center justify-between py-3 px-5 border border-t-0 border-l-0 border-r-0 border-gray-800 hover:cursor-pointer hover:bg-slate-900 transition-all ease-out duration-300"
             onClick={() => updateCurrentIndex(index)}
           >
-            <img
-              src={item.track.album.images[2].url}
-              alt=""
-              className="rounded-lg mr-4"
-            />
-            <div className="">
-              <h3>{item.track.name}</h3>
-              <p className="text-gray-500">{item.track.artists[0].name}</p>
+            <div className="flex items-center">
+              <img
+                src={item.track.album.images[2].url}
+                alt=""
+                className="rounded-lg mr-4"
+              />
+              <div className="">
+                <h3>{item.track.name}</h3>
+                <p className="text-gray-500">{item.track.artists[0].name}</p>
+              </div>
             </div>
+            <p className="flex-end text-gray-500">00:30</p>
           </li>
         ))}
       </ul>
