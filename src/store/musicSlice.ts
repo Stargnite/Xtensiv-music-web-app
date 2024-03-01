@@ -51,7 +51,7 @@ export const musicSlice = createSlice({
         currentTrack: currentTrack,
       };
     },
-    getCurrentTrackIndex: (state, action) => {
+    updateCurrentTrackIndex: (state, action) => {
       const currentTrackIndex = action.payload;
       return {
         ...state,
@@ -66,7 +66,7 @@ export const musicSlice = createSlice({
         currentTrackIndex:
           state.currentTrackIndex === state.playlist.length
             ? state.currentTrackIndex
-            : state.currentTrackIndex++,
+            : state.currentTrackIndex + 1,
       };
     },
     handlePrevTrack: (state) => {
@@ -74,7 +74,7 @@ export const musicSlice = createSlice({
       return {
         ...state,
         currentTrackIndex:
-          state.currentTrackIndex === 0 ? 0 : state.currentTrackIndex--,
+          state.currentTrackIndex === 0 ? 0 : state.currentTrackIndex - 1,
       };
     },
   },
@@ -84,7 +84,7 @@ export const {
   togglePlay,
   fillPlaylist,
   updateCurrentTrack,
-  getCurrentTrackIndex,
+  updateCurrentTrackIndex,
   handleNextTrack,
   handlePrevTrack,
 } = musicSlice.actions;

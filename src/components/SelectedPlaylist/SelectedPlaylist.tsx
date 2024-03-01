@@ -5,17 +5,18 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fillPlaylist,
   updateCurrentTrack,
-  getCurrentTrackIndex,
+  updateCurrentTrackIndex,
 } from "../../store/musicSlice";
 
 const SelectedPlaylist = () => {
   const { selectedPlaylistId } = useParams();
   // const [listedTracks, setListedTracks] = useState([]);
   // const [currentTrack, setCurrentTrack] = useState({});
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedTrackIndex, setSelectedTrackIndex] = useState(0);
 
   const dispatch = useDispatch();
   const listedTracks = useSelector((state) => state.music.playlist);
+  const currentIndex = useSelector((state) => state.music.currentTrackIndex);
 
   useEffect(() => {
     apiClient
@@ -24,7 +25,7 @@ const SelectedPlaylist = () => {
         const tracks = response.data.items;
         dispatch(fillPlaylist(tracks));
         dispatch(updateCurrentTrack(tracks[currentIndex].track));
-        dispatch(getCurrentTrackIndex(currentIndex));
+        dispatch(updateCurrentTrackIndex(currentIndex));
         // console.log(response.data.items);
         // setCurrentIndex()
         // setListedTracks(tracks);
@@ -34,8 +35,7 @@ const SelectedPlaylist = () => {
   }, [selectedPlaylistId, dispatch, currentIndex]);
 
   const updateCurrentIndex = (index: number) => {
-    setCurrentIndex(index);
-    console.log(index);
+    dispatch(updateCurrentTrackIndex(index));
   };
 
   return (
