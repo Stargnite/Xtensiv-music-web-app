@@ -2,7 +2,8 @@
   white-space: nowrap;
   display: inline-block;
   animation: marquee  10s linear infinite;
-  max-width: 200px;
+  min-width: 300px;
+  max-width: 300px;
   padding-left: 20%;
 }
 

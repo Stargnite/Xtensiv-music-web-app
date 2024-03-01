@@ -6,15 +6,21 @@ import "./musicHeader.css";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdPhonePortrait } from "react-icons/io";
 import Marquee from "../UI/Marquee";
+import { useEffect } from "react";
 
 const MusicHeader = () => {
   const isPlaying = useSelector((state) => state.music.isPlaying);
   // const dispatch = useDispatch()
 
   const currentTrack = useSelector((state) => state.music.currentTrack);
+  const currentTrackIndex = useSelector((state) => state.music.currentTrackIndex);
+  useEffect(() => {
+
+  }, [currentTrackIndex])
 
   const imageUrl =
     currentTrack &&
+    
     currentTrack.album &&
     currentTrack.album.images &&
     currentTrack.album.images.length > 2
